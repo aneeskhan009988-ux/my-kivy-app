@@ -1,4 +1,4 @@
-name: Build APK
+name: Build Android APK
 
 on:
   workflow_dispatch:
@@ -14,21 +14,18 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.11'
 
-    - name: Install dependencies
+    - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev xclip libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
-        sudo apt-get install -y libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav libmtdev-dev xclip xsel libjpeg-dev
+        sudo apt-get install -y libsqlite3-dev lldd lld dld openjdk-17-jdk
         pip install --upgrade pip
-        pip install Cython==0.29.33 buildozer kivy
+        pip install Cython==0.29.33 virtualenv buildozer
 
     - name: Build with Buildozer
       run: |
         yes | buildozer android debug
-      env:
-        TERM: xterm
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
