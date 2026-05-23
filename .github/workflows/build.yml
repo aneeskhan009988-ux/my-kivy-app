@@ -19,7 +19,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libsqlite3-dev lldd lld dld openjdk-17-jdk
+        sudo apt-get install -y build-essential libsqlite3-dev openjdk-17-jdk libffi-dev libssl-dev
         pip install --upgrade pip
         pip install Cython==0.29.33 virtualenv buildozer
 
@@ -32,4 +32,3 @@ jobs:
       with:
         name: CryptoBot-APK
         path: bin/*.apk
-        
