@@ -5,14 +5,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
@@ -22,7 +22,7 @@ jobs:
         sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev xclip libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
         sudo apt-get install -y libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav libmtdev-dev xclip xsel libjpeg-dev
         pip install --upgrade pip
-        pip install buildozer cython git+https://github.com/kivy/kivy.git@master
+        pip install Cython==0.29.33 buildozer kivy
 
     - name: Build with Buildozer
       run: |
